@@ -1,0 +1,948 @@
+﻿<Window x:Class="GameDB.TableControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameDB"
+        mc:Ignorable="d"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF268A9D">
+            <TextBlock Text="Role play game data base: table control" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Margin="0,10" Width="56" Click="CloseClick">
+                <materialDesign:PackIcon Kind="Power" Height="26" Width="27"/>
+            </Button>
+        </Grid>
+        <Grid Margin="0, 60, 0, 0">
+            <dragablz:TabablzControl x:Name="tabControl" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" BorderBrush="#FF268A9D">
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>
+                
+                <TabItem x:Name="roleItem" Header="Role">
+                    <Grid x:Name="roleGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="role_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="role_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="roleTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="RoleTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="rolePanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="roleInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RoleInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="roleUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RoleUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="roleDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RoleDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="userItem" Header="User">
+                    <Grid x:Name="userGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Login:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_login" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Password:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_password" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Surname:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_surname" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Donat:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_donat" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Role:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="user_role" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="userTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="UserTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="userPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="userInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UserInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="userUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UserUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="userDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UserDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="raceItem" Header="Race">
+                    <Grid x:Name="raceGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="race_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="race_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Location:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="race_location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="raceTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="RaceTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="racePanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="raceInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RaceInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="raceUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RaceUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="raceDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RaceDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="classItem" Header="Class">
+                    <Grid x:Name="classGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="class_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="class_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="classTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="ClassTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="classPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="classInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ClassInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="classUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ClassUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="classDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ClassDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="locationItem" Header="Location">
+                    <Grid x:Name="locationGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="X:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_x" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Y:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_y" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Z:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_z" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Min level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_min_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Max level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_max_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Blob:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="location_blob" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="locationTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="LocationTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="locationPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="locationInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="LocationInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="locationUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="LocationUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="locationDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="LocationDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="characterItem" Header="Character">
+                    <Grid x:Name="characterGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <ScrollViewer>
+                                <WrapPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="User:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_user" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Race:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_race" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Class:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_class" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Location:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Exp:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_exp" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Max health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_max_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Max mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_max_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Power:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_power" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Speed:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_speed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mind:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="character_mind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </GroupBox>
+
+                        <DataGrid x:Name="characterTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="CharacterTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="characterPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="characterInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="characterUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="characterDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="monsterItem" Header="Monster">
+                    <Grid x:Name="monsterGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <ScrollViewer>
+                                <WrapPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Race:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_race" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Class:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_class" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Location:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Max health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_max_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Max mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_max_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Power:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_power" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Speed:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_speed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mind:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_mind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="220" MaxLength="30"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Blob:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                        <TextBox x:Name="monster_blob" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                    </StackPanel>
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </GroupBox>
+
+                        <DataGrid x:Name="monsterTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="MonsterTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="monsterPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="monsterInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="monsterUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="monsterDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="professionItem" Header="Profession">
+                    <Grid x:Name="professionGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="profession_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="profession_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="professionTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="ProfessionTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="professionPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="professionInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ProfessionInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="professionUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ProfessionUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="professionDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ProfessionDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="npcItem" Header="NPC">
+                    <Grid x:Name="npcGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Race:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_race" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Profession:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_profession" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Location:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Blob:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="npc_blob" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="npcTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="NPCTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="npcPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="npcInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="NPCInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="npcUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="NPCUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="npcDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="NPCDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="skill_typeItem" Header="Skill_Type">
+                    <Grid x:Name="skill_typeGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_type_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_type_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="skill_TypeTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Skill_TypeTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="skill_typePanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="skill_TypeInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Skill_TypeInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="skill_TypeUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Skill_TypeUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="skill_TypeDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Skill_TypeDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="skillItem" Header="Skill">
+                    <Grid x:Name="skillGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Race:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_race" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Class:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_class" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Type:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_type" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Level:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_level" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Blob:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="skill_blob" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="skillTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="SkillTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="skillPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="skillInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="SkillInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="skillUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="SkillUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="skillDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="SkillDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="character_skillItem" Header="Character_Skill">
+                    <Grid x:Name="character_skillGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_skill_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Character:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_skill_character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Skill:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_skill_skill" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="character_SkillTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Character_SkillTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="character_SkillPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="character_SkillInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_SkillInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="character_SkillUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_SkillUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="character_SkillDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_SkillDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="monster_skillItem" Header="Monster_Skill">
+                    <Grid x:Name="monster_skillGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_skill_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Monster:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_skill_monster" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Skill:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_skill_skill" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="monster_SkillTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Monster_SkillTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="monster_SkillPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="monster_SkillInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_SkillInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="monster_SkillUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_SkillUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="monster_SkillDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_SkillDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="item_typeItem" Header="Item_Type">
+                    <Grid x:Name="item_typeGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_type_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_type_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="item_TypeTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Item_TypeTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="item_typePanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="item_TypeInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Item_TypeInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="item_TypeUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Item_TypeUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="item_TypeDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Item_TypeDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="itemItem" Header="Item">
+                    <Grid x:Name="itemGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_name" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Type:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_type" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Health:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_health" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mana:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_mana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Power:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_power" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Speed:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_speed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Mind:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_mind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Blob:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="item_blob" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="itemTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="ItemTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="itemPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="itemInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ItemInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="itemUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ItemUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="itemDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ItemDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="character_itemItem" Header="Character_Item">
+                    <Grid x:Name="character_itemGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_item_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Character:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_item_character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Item:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="character_item_item" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="character_ItemTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Character_ItemTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="character_ItemPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="character_ItemInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_ItemInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="character_ItemUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_ItemUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="character_ItemDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Character_ItemDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="monster_itemItem" Header="Monster_Item">
+                    <Grid x:Name="monster_itemGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox  Grid.Column="0" Grid.Row="0" Margin="10, 10, 0, 0">
+                            <WrapPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Id:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_item_id" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Monster:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_item_monster" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Item:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_item_item" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="Chance:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+                                    <TextBox x:Name="monster_item_chance" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="15" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="240" MaxLength="30"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="monster_ItemTable" Margin="10, 10, 10, 0" Grid.Column="1" Grid.Row="0" SelectionChanged="Monster_ItemTable_SelectionChanged" IsReadOnly="True"/>
+
+                        <StackPanel x:Name="monster_ItemPanel" Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Button Name="monster_ItemInsertButton" Content="Insert" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_ItemInsertClick" IsEnabled="True" Width="340" Height="40"/>
+                            <Button Name="monster_ItemUpdateButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_ItemUpdateClick" IsEnabled="False" Width="340" Height="40"/>
+                            <Button Name="monster_ItemDeleteButton" Content="Delete" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Monster_ItemDeleteClick" IsEnabled="False" Width="340" Height="40"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+            </dragablz:TabablzControl>
+        </Grid>
+    </Grid>
+</Window>

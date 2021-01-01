@@ -1,0 +1,62 @@
+ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
+
+-------------------------GAMEDB_SCH-------------------------
+
+SELECT * FROM user_scheduler_schedules WHERE SCHEDULE_NAME = 'GAMEDB_SCH';
+SELECT * FROM user_scheduler_programs WHERE PROGRAM_NAME = 'GAMEDB_PROG';
+SELECT * FROM user_scheduler_jobs WHERE JOB_NAME = 'GAMEDB_JOB';
+
+BEGIN
+    DBMS_SCHEDULER.CREATE_SCHEDULER(
+        SCHEDULE_NAME => 'GAMEDB_SCH',
+        START_DATE => SYSTIMESTAMP,
+        REPEAT_INTERVAL => 'FREQ=MINUTELY; INTERVAL=1',
+        END_DATE => NULL,
+        COMMENTS => 'GameDB scheduler'
+    );
+END;
+
+BEGIN
+    DBMS_SCHEDULER.DROP_SCHEDULE('GAMEDB_SCH', true);
+END;
+
+-------------------------GAMEDB_PROG-------------------------
+
+BEGIN
+    DBMS_SCHEDULER.CREATE_PROGRAM(
+        PROGRAM_NAME => 'GAMEDB_PROG',
+        PROGRAM_TYPE => 'STORED_PROCEDURE',
+        PROGRAM_ACTION => 'GAMEDBADMIN.HEALTH_MANA_HEAL',
+        NUMBER_OF_ARGUMENTS => 0,
+        ENABLED => TRUE,
+        COMMENTS => 'GameDB program'
+    );
+    DBMS_SCHEDULER.ENABLE (NAME=>'GAMEDB_PROG');
+END;
+
+BEGIN
+    DBMS_SCHEDULER.DROP_PROGRAM('GAMEDB_PROG', true);
+END;
+
+-------------------------GAMEDB_JOB-------------------------
+
+BEGIN
+    DBMS_SCHEDULER.CREATE_JOB(
+        JOB_NAME => 'GAMEDB_JOB',
+        PROGRAM_NAME => 'GAMEDB_PROG',
+        SCHEDULE_NAME => 'GAMEDB_SCH',
+        ENABLED => TRUE
+    );
+END;
+
+BEGIN
+    DBMS_SCHEDULER.DROP_JOB('GAMEDB_JOB', true);
+END;
+
+BEGIN
+    DBMS_SCHEDULER.RUN_JOB('GAMEDB_JOB');
+END;
+
+BEGIN
+    DBMS_SCHEDULER.STOP_JOB('GAMEDB_JOB');
+END;

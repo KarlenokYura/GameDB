@@ -1,0 +1,104 @@
+﻿<Window x:Class="GameDB.Battle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameDB"
+        mc:Ignorable="d"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Border BorderBrush="#FF268A9D" BorderThickness="1">
+        <Grid>
+            <Grid Height="60" VerticalAlignment="Top" Background="#FF268A9D">
+                <TextBlock Text="Role play game data base: Battle" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Margin="0,10" Width="56" Click="CloseClick">
+                    <materialDesign:PackIcon Kind="Power" Height="26" Width="27"/>
+                </Button>
+            </Grid>
+            <Grid Margin="0, 60, 0, 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="5"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <WrapPanel x:Name="characterPanel" Grid.Column="0" IsEnabled="True">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel Width="200" Margin="0,0,0,0">
+                            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="1,0,0,1" Height="160" Width="160" Margin="5,20,0,0">
+                                <Image x:Name="characterIcon" Width="156" Height="156" Stretch="Fill"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Width="300" Margin="5,0,0,0">
+                            <TextBlock x:Name="characterName" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="38" Margin="0, 15, 0, 15" Text="Character" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock x:Name="characterRace" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Race: race" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                            <TextBlock x:Name="characterClass" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Class: class" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                            <TextBlock x:Name="characterLevel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Level: level" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock x:Name="characterHealth" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Health: health" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                        <ProgressBar x:Name="characterProgressHealth" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="40" Value="0" Height="25" Width="485"></ProgressBar>
+                        <TextBlock x:Name="characterMana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mana: mana" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                        <ProgressBar x:Name="characterProgressMana" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="20" Value="0" Height="25" Width="485"></ProgressBar>
+                    </WrapPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="characterPower" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Power: power" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                        <TextBlock x:Name="characterSpeed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Speed: speed" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                        <TextBlock x:Name="characterMind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mind: mind" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                    </StackPanel>
+                    <WrapPanel>
+                        <Button Name="characterAttackButton" Content="Attack" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="27, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterAttackClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="characterRunButton" Content="Run" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterRunClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="characterMissButton" Content="Miss" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterMissClick" IsEnabled="True" Width="148" Height="40"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Button Name="characterFirstButton" Content="First" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="27, 5, 10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterFirstClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="characterSecondButton" Content="Second" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterSecondClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="characterThirdButton" Content="Third" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CharacterThirdClick" IsEnabled="True" Width="148" Height="40"/>
+                    </WrapPanel>
+                </WrapPanel>
+
+                <WrapPanel Background="#FF268A9D" Grid.Column="1"></WrapPanel>
+
+                <WrapPanel x:Name="monsterPanel" Grid.Column="2" IsEnabled="False">
+                    <StackPanel Orientation="Horizontal" >
+                        <StackPanel Width="200" Margin="0,0,0,0">
+                            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="1,0,0,1" Height="160" Width="160" Margin="5,20,0,0">
+                                <Image x:Name="monsterIcon" Width="156" Height="156" Stretch="Fill"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Width="300" Margin="5,0,0,0">
+                            <TextBlock x:Name="monsterName" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="38" Margin="0, 15, 0, 15" Text="Monster" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock x:Name="monsterRace" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Race: race" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                            <TextBlock x:Name="monsterClass" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Class: class" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                            <TextBlock x:Name="monsterLevel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Location: level" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock x:Name="monsterHealth" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Health: health" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                        <ProgressBar x:Name="monsterProgressHealth" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="40" Value="0" Height="25" Width="490"></ProgressBar>
+                        <TextBlock x:Name="monsterMana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mana: mana" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                        <ProgressBar x:Name="monsterProgressMana" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="20" Value="0" Height="25" Width="490"></ProgressBar>
+                    </WrapPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="monsterPower" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Power: power" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                        <TextBlock x:Name="monsterSpeed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Speed: speed" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                        <TextBlock x:Name="monsterMind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mind: mind" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="510"/>
+                    </StackPanel>
+                    <WrapPanel IsEnabled="True">
+                        <Button Name="monsterAttackButton" Content="Attack" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="27, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterAttackClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="monsterRunButton" Content="Run" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterRunClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="monsterMissButton" Content="Miss" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5, 10, 10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterMissClick" IsEnabled="True" Width="148" Height="40"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Button Name="monsterFirstButton" Content="First" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="27, 5, 10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterFirstClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="monsterSecondButton" Content="Second" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterSecondClick" IsEnabled="True" Width="148" Height="40"/>
+                        <Button Name="monsterThirdButton" Content="Third" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="10, 5" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="MonsterThirdClick" IsEnabled="True" Width="148" Height="40"/>
+                    </WrapPanel>
+                </WrapPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,214 @@
+﻿<Window x:Class="GameDB.Page"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameDB"
+        mc:Ignorable="d"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Height="600" Width="1080" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Loaded="Window_Loaded">
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF268A9D">
+            <TextBlock Text="Role play game data base" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="25" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Margin="0,10" Width="56" Click="CloseClick">
+                <materialDesign:PackIcon Kind="Power" Height="26" Width="27"/>
+            </Button>
+        </Grid>
+        <Grid Margin="0, 60, 0, 0" >
+            <dragablz:TabablzControl x:Name="tabControl" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" BorderBrush="#FF268A9D">
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>
+                <TabItem x:Name="characterItem" Header="Characters" Visibility="Visible">
+                    <Grid x:Name="characterGrid" Visibility="{Binding Path=Visibility, ElementName=characterItem}">
+                        <ScrollViewer Name="characterScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="createButton" Content="Create new character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CreateClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="characterList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="statItem" Header="Stats" Visibility="Hidden">
+                    <Grid x:Name="statGrid" Visibility="{Binding Path=Visibility, ElementName=statItem}">
+                        <ScrollViewer Name="statScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backStatButton" Content="Back to character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackStatClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <StackPanel Orientation="Horizontal" >
+                                    <StackPanel Width="200" Margin="0,0,0,0">
+                                        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="1,0,0,1" Height="160" Width="160" Margin="5,20,0,0">
+                                            <Image x:Name="characterIcon" Width="156" Height="156" Stretch="Fill"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Width="850" Margin="5,0,0,0">
+                                        <TextBlock x:Name="characterName" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="38" Margin="-185, 15, 0, 15" Text="Character" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock x:Name="characterRace" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Race: race" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500"/>
+                                        <TextBlock x:Name="characterClass" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Class: class" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500"/>
+                                        <TextBlock x:Name="characterLocation" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Location: location" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="500"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <WrapPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="characterLevel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 0, 25, 5" Text="Level: level" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                                    <TextBlock x:Name="characterExp" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Exp: exp" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                                    <ProgressBar x:Name="progressLevel" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="20" Value="0" Height="25" Width="503"></ProgressBar>
+                                    <ProgressBar x:Name="progressExp" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="1024" Value="0" Height="25" Width="503"></ProgressBar>
+                                </WrapPanel>
+                                <WrapPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="characterHealth" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Health: health" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                                    <TextBlock x:Name="characterMana" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mana: mana" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+                                    <ProgressBar x:Name="progressHealth" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="40" Value="0" Height="25" Width="503"></ProgressBar>
+                                    <ProgressBar x:Name="progressMana" Orientation="Horizontal" Margin="25, 0, 0, 5" Minimum="0" Maximum="20" Value="0" Height="25" Width="503"></ProgressBar>
+                                </WrapPanel>
+                                <StackPanel>
+                                    <TextBlock x:Name="characterPower" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Power: power" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="1080"/>
+                                    <TextBlock x:Name="characterSpeed" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Speed: speed" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="1080"/>
+                                    <TextBlock x:Name="characterMind" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="25, 5" Text="Mind: mind" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="1080"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="locationItem" Header="Locations" Visibility="Hidden">
+                    <Grid x:Name="locationGrid" Visibility="{Binding Path=Visibility, ElementName=locationItem}">
+                        <ScrollViewer Name="locationScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backLocationButton" Content="Back to character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackLocationClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="locationList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="skillItem" Header="Skills" Visibility="Hidden">
+                    <Grid x:Name="skillGrid" Visibility="{Binding Path=Visibility, ElementName=skillItem}">
+                        <ScrollViewer Name="skillScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backSkillButton" Content="Back to character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackSkillClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="skillList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="itemItem" Header="Items" Visibility="Hidden">
+                    <Grid x:Name="itemGrid" Visibility="{Binding Path=Visibility, ElementName=itemItem}">
+                        <ScrollViewer Name="itemScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backItemButton" Content="Back to character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackItemClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="itemList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="monsterItem" Header="Monsters" Visibility="Hidden">
+                    <Grid x:Name="monsterGrid" Visibility="{Binding Path=Visibility, ElementName=monsterItem}">
+                        <ScrollViewer Name="monsterScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backMonsterButton" Content="Back to location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackMonsterClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="monsterList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="monsterSkillItem" Header="Skills" Visibility="Hidden">
+                    <Grid x:Name="monsterSkillGrid" Visibility="{Binding Path=Visibility, ElementName=monsterSkillItem}">
+                        <ScrollViewer Name="monsterSkillScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backMonsterSkillButton" Content="Back to monster" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackMonsterSkillClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="monsterSkillList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="dropItem" Header="Drops" Visibility="Hidden">
+                    <Grid x:Name="dropGrid" Visibility="{Binding Path=Visibility, ElementName=dropItem}">
+                        <ScrollViewer Name="dropScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backDropButton" Content="Back to monster" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackDropClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="dropList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="npcItem" Header="NPCs" Visibility="Hidden">
+                    <Grid x:Name="npcGrid" Visibility="{Binding Path=Visibility, ElementName=npcItem}">
+                        <ScrollViewer Name="npcScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+                                <Button Name="backNPCButton" Content="Back to location" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackNPCClick" IsEnabled="True" Width="1040" Height="40" Grid.Row="0"/>
+                                <WrapPanel x:Name="npcList" Background="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem x:Name="settingItem" Header="Settings" Visibility="Visible">
+                    <Grid x:Name="settingGrid" Visibility="{Binding Path=Visibility, ElementName=settingItem}">
+                        <ScrollViewer Name="settingScrollView" Background="{x:Null}" CanContentScroll="True" MaxWidth="1080" Margin="0,0,0,0">
+                            <WrapPanel>
+
+                                <Button Name="backSettingButton" Content="Log out" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackSettingClick" IsEnabled="True" Width="1025" Height="40" Grid.Row="0"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="settingLogin" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Login:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135"/>
+                                    <TextBox x:Name="settingUserLogin" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Login" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" IsReadOnly="True" MaxLength="30"/>
+                                    <Button Name="settingChangeLoginButton" Content="Change" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ChangeLoginClick" IsEnabled="True" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingUpdateLoginButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UpdateLoginClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingCancelLoginButton" Content="Cancel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CancelLoginClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="settingPassword" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Password:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135"/>
+                                    <TextBox x:Name="settingUserPassword" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Password" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" IsReadOnly="True" MaxLength="30"/>
+                                    <Button Name="settingChangePasswordButton" Content="Change" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ChangePasswordClick" IsEnabled="True" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingUpdatePasswordButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UpdatePasswordClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingCancelPasswordButton" Content="Cancel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CancelPasswordClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="settingName" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Name:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135"/>
+                                    <TextBox x:Name="settingUserName" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Name" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" IsReadOnly="True" MaxLength="30"/>
+                                    <Button Name="settingChangeNameButton" Content="Change" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ChangeNameClick" IsEnabled="True" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingUpdateNameButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UpdateNameClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingCancelNameButton" Content="Cancel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CancelNameClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="settingSurname" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Surname:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="135"/>
+                                    <TextBox x:Name="settingUserSurname" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Surname" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" IsReadOnly="True" MaxLength="30"/>
+                                    <Button Name="settingChangeSurnameButton" Content="Change" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ChangeSurnameClick" IsEnabled="True" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingUpdateSurnameButton" Content="Update" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="UpdateSurnameClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                    <Button Name="settingCancelSurnameButton" Content="Cancel" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="CancelSurnameClick" IsEnabled="False" Width="170" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <Button Name="deleteUserButton" Content="Delete user" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="DeleteUserClick" IsEnabled="True" Width="1025" Height="40" Grid.Row="0"/>
+
+                                <StackPanel x:Name="donatPanel" Orientation="Horizontal" Visibility="Hidden">
+                                    <TextBlock x:Name="donatLogin" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="Login:" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="145"/>
+                                    <TextBox x:Name="donatUserLogin" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="19" Margin="10, 5" Text="" Foreground="#FF564545" HorizontalAlignment="Left" VerticalAlignment="Center" Width="300" MaxLength="30"/>
+                                    <Button Name="grantDonatButton" Content="Grant donat" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="GrantDonatClick" IsEnabled="True" Width="260" Height="40" Grid.Row="0"/>
+                                    <Button Name="revokeDonatButton" Content="Revoke donat" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RevokeDonatClick" IsEnabled="True" Width="260" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <StackPanel x:Name="xmlPanel" Orientation="Horizontal" Visibility="Hidden">
+                                    <Button Name="xmlExportButton" Content="Export to XML" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="XMLExportClick" IsEnabled="True" Width="328" Height="40" Grid.Row="0"/>
+                                    <Button Name="insert100KButton" Content="Insert 100K" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="Insert100KClick" IsEnabled="False" Width="328" Height="40" Grid.Row="0"/>
+                                    <Button Name="xmlImportButton" Content="Import from XML" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="XMLImportClick" IsEnabled="False" Width="328" Height="40" Grid.Row="0"/>
+                                </StackPanel>
+
+                                <Button Name="tableControlButton" Content="Open table control menu" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="20" Margin="20,10,0,10" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="TableControlClick" IsEnabled="True" Width="1025" Height="40" Grid.Row="0" Visibility="Hidden"/>
+
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
+    </Grid>
+</Window>

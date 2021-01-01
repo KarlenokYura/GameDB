@@ -1,0 +1,36 @@
+﻿<Window x:Class="GameDB.ChangeCharacter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GameDB"
+       mc:Ignorable="d"
+       Title="Change character" Height="325" Width="400" FontSize="14" Background="#FF175E6B" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Loaded="Window_Loaded">
+
+    <Border Background="#FF268A9D" Margin="25">
+        <StackPanel Margin="0,0,0.4,0.8" >
+            <StackPanel Margin="38,15,38.4,0"  Cursor="Pen" Height="242">
+                <Label Content="Change character" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="25" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Cursor="Arrow"/>
+                <Separator BorderThickness="5" Background="#FFFFFDFD" BorderBrush="#FFF8F8F8" Foreground="#FFFFF9F9"/>
+
+                <TextBox x:Name="characterName" FontFamily="/GameDB;component/Resources/#Marvin" Margin="0,10,0,0" materialDesign:HintAssist.Hint="Enter name here" materialDesign:HintAssist.IsFloating="True" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" FontSize="16" Cursor="Pen" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="30"/>
+
+                <Button x:Name="changeButton" Content="Change" Height="31" FontFamily="/GameDB;component/Resources/#Marvin" Margin="35,25,35.6,25" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="ChangeClick" RenderTransformOrigin="0.5,0.5" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.562"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Label Content="or" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="14" HorizontalAlignment="Center" Margin="120,-15,124.6,0" Foreground="White" Cursor="Arrow" Width="29" />
+
+                <Button x:Name="BackButton" Content="Back to character" FontFamily="/GameDB;component/Resources/#Marvin" Margin="35,8,35.4,8" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="BackClick" IsEnabled="True" Height="31" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

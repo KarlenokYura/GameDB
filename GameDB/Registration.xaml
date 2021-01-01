@@ -1,0 +1,55 @@
+﻿<Window x:Class="GameDB.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GameDB"
+       mc:Ignorable="d"
+       Title="Registration" Height="479.618" Width="400" FontSize="14" Background="#FF175E6B" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" Loaded="Window_Loaded">
+
+    <Border Background="#FF268A9D" Margin="25">
+        <StackPanel Margin="0,0,0.4,0.8" >
+            <StackPanel Margin="38,15,38.4,0"  Cursor="Pen" Height="402">
+                <Label Content="Registration" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="25" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Cursor="Arrow"/>
+                <Separator BorderThickness="5" Background="#FFFFFDFD" BorderBrush="#FFF8F8F8" Foreground="#FFFFF9F9"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon x:Name="userLoginIcon" Kind="Account" Foreground="#FF9800" Width="25" Height="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="userLogin" FontFamily="/GameDB;component/Resources/#Marvin" Margin="0,10,10,0" materialDesign:HintAssist.Hint="Enter login here" materialDesign:HintAssist.IsFloating="True" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" FontSize="16" Cursor="Pen" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="30"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon x:Name="userPasswordIcon" Kind="Key" Foreground="#FF9800" Width="25" Height="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+                    <PasswordBox x:Name="userPassword" FontFamily="/GameDB;component/Resources/#Marvin" PasswordChar="•" Margin="0,10,10,0" materialDesign:HintAssist.Hint="Enter password here" materialDesign:HintAssist.IsFloating="True" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" FontSize="16" Cursor="Pen" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="30"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon x:Name="userNameIcon" Kind="AccountBoxOutline" Foreground="#FF9800" Width="25" Height="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="userName" FontFamily="/GameDB;component/Resources/#Marvin" Margin="0,10,10,0" materialDesign:HintAssist.Hint="Enter name here" materialDesign:HintAssist.IsFloating="True" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" FontSize="16" Cursor="Pen" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="30"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon x:Name="userSurnameIcon" Kind="AccountBox" Foreground="#FF9800" Width="25" Height="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="userSurname" FontFamily="/GameDB;component/Resources/#Marvin" Margin="0,10,10,0" materialDesign:HintAssist.Hint="Enter surname here" materialDesign:HintAssist.IsFloating="True" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" FontSize="16" Cursor="Pen" HorizontalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="30"/>
+                </StackPanel>
+
+                <Button x:Name="registrationButton" Content="Sign up" Height="31" FontFamily="/GameDB;component/Resources/#Marvin" Margin="35,25,35.6,25" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="RegistrationClick" RenderTransformOrigin="0.5,0.5" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.562"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Label Content="or" FontFamily="/GameDB;component/Resources/#Marvin" FontSize="14" HorizontalAlignment="Center" Margin="120,-15,124.6,0" Foreground="White" Cursor="Arrow" Width="29" />
+
+                <Button x:Name="loginButton" Content="Back to Log In" FontFamily="/GameDB;component/Resources/#Marvin" Margin="35,8,35.4,8" BorderBrush="#FF268A9D" Background="#FF175E6B" Foreground="White" Click="LoginClick" IsEnabled="True" Height="31" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>
+
